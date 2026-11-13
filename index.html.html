@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Gulasal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #120524, #38103c, #5c164e);
+            overflow: hidden;
+            position: relative;
+        }
+        .birthday-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 5.5rem;
+            text-align: center;
+            background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.7));
+            opacity: 0;
+            animation: fadeInSlow 3.5s ease-in-out forwards, shine 3s ease-in-out infinite 3.5s, floatTitle 4s ease-in-out infinite 3.5s;
+            z-index: 10;
+            letter-spacing: 2px;
+            padding: 0 20px;
+        }
+        @keyframes fadeInSlow {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes shine {
+            0% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.4)); }
+            50% { filter: drop-shadow(0 0 30px rgba(255, 230, 100, 0.95)); }
+            100% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.4)); }
+        }
+        @keyframes floatTitle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+        .balloon-wrapper {
+            position: absolute;
+            bottom: -120px;
+            z-index: 1;
+            animation: floatUp linear infinite;
+        }
+        .balloon {
+            position: relative;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.2) 25%, rgba(0, 0, 0, 0.25) 75%), var(--balloon-color);
+            box-shadow: inset -8px -10px 18px rgba(0, 0, 0, 0.35), 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .balloon::after {
+            content: "";
+            position: absolute;
+            bottom: -7px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 8px solid var(--balloon-color);
+        }
+        .string {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            width: 1px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+            15% { opacity: 0.85; }
+            85% { opacity: 0.85; }
+            100% { transform: translateY(-125vh) translateX(40px) scale(1); opacity: 0; }
+        }
+        .heart {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #ff65a3;
+            transform: rotate(-45deg);
+            animation: beat 1s ease-in-out infinite, twinkleHeart 3s ease-in-out infinite;
+            z-index: 2;
+            opacity: 0.8;
+        }
+        .heart::before, .heart::after {
+            content: "";
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #ff65a3;
+            border-radius: 50%;
+        }
+        .heart::before { top: -6px; left: 0; }
+        .heart::after { left: 6px; top: 0; }
+        @keyframes beat {
+            0%, 100% { transform: rotate(-45deg) scale(1); }
+            50% { transform: rotate(-45deg) scale(1.35); }
+        }
+        @keyframes twinkleHeart {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.95; filter: drop-shadow(0 0 6px #ff65a3); }
+        }
+        .sparkle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite ease-in-out;
+            z-index: 3;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.7); }
+            50% { opacity: 1; transform: scale(1.5); box-shadow: 0 0 10px white; }
+        }
+    </style>
+</head>
+<body>
+    <div class="birthday-text">Happy Birthday Gulasal</div>
+    <script>
+        const colors = ['#ff7675', '#74b9ff', '#ffeaa7', '#a29bfe', '#fd79a8', '#55efc4', '#fab1a0'];
+        for (let i = 0; i < 30; i++) {
+            const wrapper = document.createElement('div');
+            wrapper.classList.add('balloon-wrapper');
+            wrapper.style.left = Math.random() * 100 + 'vw';
+            wrapper.style.animationDuration = (Math.random() * 5 + 6) + 's';
+            wrapper.style.animationDelay = (Math.random() * 6) + 's';
+
+            const balloon = document.createElement('div');
+            balloon.classList.add('balloon');
+            balloon.style.setProperty('--balloon-color', colors[Math.floor(Math.random() * colors.length)]);
+            
+            const width = Math.random() * 25 + 30;
+            balloon.style.width = width + 'px';
+            balloon.style.height = (width * 1.2) + 'px';
+
+            const string = document.createElement('div');
+            string.classList.add('string');
+
+            wrapper.appendChild(balloon);
+            wrapper.appendChild(string);
+            document.body.appendChild(wrapper);
+        }
+
+        for (let i = 0; i < 60; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = Math.random() * 100 + 'vh';
+            heart.style.animationDelay = (Math.random() * 3) + 's';
+            document.body.appendChild(heart);
+        }
+
+        for (let i = 0; i < 45; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            sparkle.style.left = Math.random() * 100 + 'vw';
+            sparkle.style.top = Math.random() * 100 + 'vh';
+            sparkle.style.width = (Math.random() * 4 + 2) + 'px';
+            sparkle.style.height = sparkle.style.width;
+            sparkle.style.animationDuration = (Math.random() * 2 + 1) + 's';
+            sparkle.style.animationDelay = (Math.random() * 3) + 's';
+            document.body.appendChild(sparkle);
+        }
+    </script>
+</body>
+</html>
